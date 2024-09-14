@@ -46,7 +46,6 @@ userRouter.post('/signin', async(c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate())
-
     try{
         const user = await prisma.user.create({
             data:{
@@ -61,7 +60,7 @@ userRouter.post('/signin', async(c) => {
 
         return c.json({token})
     }catch(e){
-        c.status(411);
+        console.log(e)
         return c.text("Invalid");
     }
 })
