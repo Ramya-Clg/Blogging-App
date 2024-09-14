@@ -1,27 +1,41 @@
 import { BlogCard } from "../components/BlogCard"
 import { Appbar } from "../components/Appbar"
 import { useBlog } from "../hooks/useBlog"
+import { Skeleton } from "../components/Skeleton";
+
 export const Blogs = () => {
 
-    const {loading,blogs} = useBlog();  
+    const { loading, blogs } = useBlog();
 
-    if(loading){
+    if (loading) {
         return <div>
-            loading....
+            <Appbar></Appbar>
+            <div className="flex justify-center">
+                <div>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                </div>
+            </div>
         </div>
     }
-
     return <div>
         <Appbar></Appbar>
         <div className="flex justify-center">
-            <div className="max-w-xl">
-                <BlogCard
-                    authorName={"Ramya Shah"}
-                    title={"How an ugly simple page website makes $5000 a month with affiliate marketing"}
-                    content={"How an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketing1How an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketingHow an ugly simple page website makes $5000 a month with affiliate marketing1"}
-                    publishedDate={"14th september 2024"}
-                />
+            <div>
+                {blogs.map(blog =>
+                    <BlogCard
+                        authorName={blog.author.name || "Anonymous"}
+                        title={blog.title}
+                        content={blog.content}
+                        publishedDate={"14th september 2024"}
+                        id={blog.id}
+                    />
+                )}
             </div>
         </div>
     </div>
-}
+};

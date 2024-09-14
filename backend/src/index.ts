@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { sign } from 'hono/jwt'
 import { userRouter } from './routes/user'
-import { blogRouter } from './routes/blog.'
+import { blogRouter } from './routes/blog'
 import { cors } from 'hono/cors'
 
 const app = new Hono<{
